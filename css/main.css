@@ -1,0 +1,265 @@
+* {
+    box-sizing: border-box;
+}
+
+/* *** FONTS *** */
+
+@font-face {
+    font-family: impact;
+    src: url(fonts/impact.ttf);
+}
+
+@font-face {
+    font-family: openSans;
+    src: url(fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+    font-family: openSans-bold;
+    src: url(fonts/OpenSans-Bold.ttf)
+}
+
+/* *** BASICS *** */
+
+body {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(95, 44, 130)), to(rgb(73, 160, 157))) fixed;
+    margin: 0;
+    font-family: openSans, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: normal;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+}
+
+input {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+/* *** COMPONENTS *** */
+
+/* Header */
+
+.main-header {
+    background-color: white;
+    height: 11vh;
+    box-shadow: 0 0 16px rgba(23, 31, 45);
+    padding: 30px;
+}
+
+.main-header .logo {
+    font-family: impact, sans-serif;
+    background: -webkit-linear-gradient(rgb(95, 44, 130), rgb(73, 160, 157));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    letter-spacing: -2px;
+    font-size: 40px;
+}
+
+.main-nav li {
+    background-color: #f3f3f3;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.main-nav .active {
+    background-color: rgb(73, 160, 157);
+}
+
+.main-nav .active a {
+    color: white;
+}
+
+/* Main Container */
+
+.main-container {
+    background-color: white;
+    box-shadow: 0 0 16px rgba(23, 31, 45, 0.24);
+    margin: 50px auto;
+    border-radius: 10px;
+    padding: 30px;
+    width: 85vw;
+}
+
+.search-by {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    width: 50%;
+    height: 50px;
+    font-size: 1.5rem;
+    padding-left: 10px;
+    color: #7f8fa6;
+    border: none;
+    background: #f5f6fa;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.search-btn {
+    width: 50px;
+    background: #f5f6fa;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #487eb0;
+}
+
+.search-btn:hover {
+    color: #273c75;
+}
+
+.search-by input::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+/* Make Meme Container */
+
+.main-container .make-meme-container {
+    display: none;
+}
+
+.imgs-container {
+
+    column-count: 5;
+}
+
+.imgs-container img {
+    cursor: pointer;
+    transition: .5s;
+    border-radius: 15px;
+}
+
+.imgs-container img:hover {
+    filter: brightness(70%);
+}
+
+.meme-edit-container {
+    margin-left: 20px;
+}
+
+.edit-btn {
+    padding: 20px;
+    font-size: 1.2rem;
+    margin: 10px;
+}
+
+.meme-text-container {
+    width: 100%;
+}
+
+.meme-text-container input {
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    font-family: impact, sans-serif;
+    border-radius: 5px;
+    border: 1px solid grey;
+    margin-bottom: 20px;
+}
+
+/* Main Footer */
+
+.main-footer {
+    background-color: white;
+    height: 5vh;
+    box-shadow: 0 0 16px rgba(23, 31, 45);
+}
+
+
+@media (max-width: 1060px) {
+    .make-meme-container {
+        flex-direction: column;
+    }
+
+    .imgs-container {
+        column-count: 3;
+    }
+
+    canvas {
+        width: 500px;
+        margin: auto;
+    }
+}
+
+@media (max-width: 660px) {
+    .main-container {
+        padding: 10px;
+    }
+
+    .imgs-container {
+        column-count: 1;
+        text-align: center;
+    }
+
+    .imgs-container img {
+        max-width: 500px;
+    }
+
+    canvas {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+
+
+
+/* *** HELPERS *** */
+
+/* List Helpers */
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Flex Helpers */
+
+.flex {
+    display: flex;
+}
+
+.flex.align-center {
+    align-items: center;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+.flex.justify-center {
+    justify-content: center;
+}
+
+.flex.space-between {
+    justify-content: space-between;
+}
+
+.flex.wrap {
+    flex-wrap: wrap;
+}
+
+.flex.align-start {
+    align-items: flex-start;
+}
