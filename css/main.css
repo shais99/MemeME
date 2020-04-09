@@ -114,6 +114,7 @@ button {
     background: #f5f6fa;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    font-family: openSans, sans-serif;
 }
 
 .search-btn {

@@ -4,6 +4,25 @@ var gImgs = [];
 var gMeme;
 var gSearchByImgs = []
 
+
+function findClickedLine(x, y) {
+    return gMeme.lines.find((line) => {
+        return x > line.xPosition
+            && x < line.xPosition + line.width
+            && y > line.yPosition - line.height
+            && y < line.yPosition
+    });
+}
+
+function getCurrLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function setLineSize(lineIdx, width, height) {
+    gMeme.lines[lineIdx].width = width
+    gMeme.lines[lineIdx].height = height
+}
+
 function searchBy(value) {
     const imgs = getImgs();
     imgs.forEach((img, imgIdx) => {
@@ -19,18 +38,16 @@ function deleteLine() {
 }
 
 function textAlign(alignTo) {
+    let currLine = gMeme.lines[gMeme.selectedLineIdx]
     switch (alignTo) {
         case 'right':
-            gMeme.lines[gMeme.selectedLineIdx].align = alignTo
-            gMeme.lines[gMeme.selectedLineIdx].xPosition = gCanvas.width
+            currLine.xPosition = gCanvas.width - currLine.width - 15
             break;
         case 'left':
-            gMeme.lines[gMeme.selectedLineIdx].align = alignTo
-            gMeme.lines[gMeme.selectedLineIdx].xPosition = 0
+            currLine.xPosition = 0 + 15
             break;
         case 'center':
-            gMeme.lines[gMeme.selectedLineIdx].align = alignTo
-            gMeme.lines[gMeme.selectedLineIdx].xPosition = gCanvas.width / 2
+            currLine.xPosition = (gCanvas.width / 2) - (currLine.width / 2)
             break;
     }
 }
@@ -38,12 +55,14 @@ function textAlign(alignTo) {
 function addLine() {
     gMeme.lines.push({
         text: 'New Line',
-        xPosition: gCanvas.width / 2,
+        xPosition: gCanvas.width * 0.355,
         yPosition: gCanvas.height / 2,
         size: 40,
         font: 'Impact',
         align: 'center',
-        color: 'white'
+        color: 'white',
+        width: 0,
+        height: 0
     })
 }
 
@@ -74,31 +93,13 @@ function resizeCanvas() {
     gCanvas.height = 500;
 }
 
-function setMeme(imgId) {
-    const foundImg = gImgs.find(img => {
-        return imgId === img.id;
-    })
-    var img = new Image();
-    img.src = foundImg.url;
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
-
-        for (var i = 0; i < gMeme.lines.length; i++) {
-            var currMeme = gMeme.lines[i];
-            setCanvasText(currMeme.text, currMeme.xPosition, currMeme.yPosition, undefined, undefined, currMeme.size, currMeme.align);
-        }
-    }
-}
-
 function setCanvasText(text, x, y, fillStyle = 'white',
-    strokeStyle = 'black', fontSize = '40',
-    textAlign = 'center', fontFamily = 'Impact') {
+    strokeStyle = 'black', fontSize = '40', fontFamily = 'Impact') {
     gCtx.beginPath();
     gCtx.lineWidth = '2'
     gCtx.strokeStyle = strokeStyle
     gCtx.fillStyle = fillStyle
     gCtx.font = fontSize + 'px ' + fontFamily;
-    gCtx.textAlign = textAlign;
     gCtx.fillText(text, x, y)
     gCtx.strokeText(text, x, y)
     gCtx.closePath();
@@ -141,23 +142,37 @@ function setCurrMeme(imgId) {
         selectedImgId: imgId,
         selectedLineIdx: 0,
         lines: [{
+            id: makeId(),
             text: 'I dont like chocolate',
-            xPosition: 250,
-            yPosition: 50,
+            xPosition: gCanvas.width * 0.165,
+            yPosition: gCanvas.height * 0.20,
             size: 40,
             font: 'Impact',
             align: 'center',
-            color: 'white'
+            color: 'white',
+            width: 0,
+            height: 0
         }, {
+            id: makeId(),
             text: 'I eat chocolate all day',
-            xPosition: 250,
-            yPosition: 450,
+            xPosition: gCanvas.width * 0.145,
+            yPosition: gCanvas.height * 0.85,
             size: 40,
             font: 'Impact',
             align: 'center',
-            color: 'white'
+            color: 'white',
+            width: 0,
+            height: 0
         }]
     }
+}
+
+function getMeme() {
+    return gMeme
+}
+
+function getLines() {
+    return gMeme.lines
 }
 
 function getImgs() {

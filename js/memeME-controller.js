@@ -4,8 +4,8 @@ var gCanvas;
 var gCtx;
 
 function onSelectMeme(imgId) {
-    setCurrMeme(imgId);
     initCanvas(imgId);
+    setCurrMeme(imgId);
     setCurrTextInput();
 }
 
@@ -28,6 +28,40 @@ function onInit() {
 //     })
 // }
 
+function onMoveSelected(ev) {
+    if (ev.which !== 1) return;
+
+    const offsetX = ev.offsetX
+    const offsetY = ev.offsetY
+
+    
+}
+
+function onChangeSelected(ev) {
+
+    const offsetX = ev.offsetX;
+    const offsetY = ev.offsetY;
+
+    var selectedLine = findClickedLine(offsetX, offsetY)
+    const lines = getLines();
+
+    if (!selectedLine) return;
+
+    var selectedLineIdx = lines.findIndex(line => {
+        return line.id === selectedLine.id;
+    })
+
+    gMeme.selectedLineIdx = selectedLineIdx
+    renderMeme(gMeme.selectedImgId)
+    setCurrTextInput();
+}
+
+function onDownloadMeme(elLink) {
+    renderMeme(gMeme.selectedImgId, true)
+    var imgContent = gCanvas.toDataURL();
+    elLink.href = imgContent
+}
+
 function onSearchBy(value) {
     searchBy(value);
     if (!value) gSearchByImgs = getImgs();
@@ -42,34 +76,18 @@ function onChangeSearchText(searchText) {
 function onDeleteLine() {
     if (gMeme.lines.length <= 0) return;
     deleteLine();
-    setMeme(gMeme.selectedImgId);
+    renderMeme(gMeme.selectedImgId);
 }
 
 function onTextAlign(alignTo) {
     if (gMeme.lines.length <= 0) return;
     textAlign(alignTo);
-    setMeme(gMeme.selectedImgId);
-}
-
-function onChangeSelected(ev) {
-
-    const offsetX = ev.offsetX;
-    const offsetY = ev.offsetY;
-
-    console.log(offsetX);
-    console.log(offsetY);
-
-    // var clickedLine = gMeme.lines.find(line => {
-    //     return offsetX > line.xPosition
-    //         && offsetX < line.xPosition
-    //         && offsetY > line.yPosition
-    //         && offsetY < gCanvas.height
-    // });
+    renderMeme(gMeme.selectedImgId);
 }
 
 function onAddLine() {
     addLine();
-    setMeme(gMeme.selectedImgId);
+    renderMeme(gMeme.selectedImgId);
 
     gMeme.selectedLineIdx = gMeme.lines.length - 1
     setCurrTextInput();
@@ -78,29 +96,61 @@ function onAddLine() {
 function onSwitchLine() {
     if (gMeme.lines.length <= 0) return;
     switchLine();
+    renderMeme(gMeme.selectedImgId)
 }
 
 function onMoveLine(diff) {
     if (gMeme.lines.length <= 0) return;
     moveLine(diff);
-    setMeme(gMeme.selectedImgId);
+    renderMeme(gMeme.selectedImgId);
 }
 
-function onChangeFontSize(diff) {
+function onUpdateFontSize(diff) {
     if (gMeme.lines.length <= 0) return;
     updateFontSize(diff);
-    setMeme(gMeme.selectedImgId);
+    renderMeme(gMeme.selectedImgId);
 }
 
 function onChangeValue(el) {
     if (gMeme.lines.length <= 0) return;
     updateText(el.value);
-    setMeme(gMeme.selectedImgId);
+    renderMeme(gMeme.selectedImgId);
 }
 
 function setCurrTextInput() {
     const elMemeText = document.querySelector('input[name="meme-text"]');
     elMemeText.value = gMeme.lines[gMeme.selectedLineIdx].text
+}
+
+function renderMeme(imgId, isDownload = false) {
+    const imgs = getImgs();
+    const foundImg = imgs.find(img => {
+        return imgId === img.id;
+    })
+    var img = new Image();
+    img.src = foundImg.url;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+
+        let lines = getLines();
+        lines.forEach((line, idx) => {
+            setCanvasText(line.text, line.xPosition, line.yPosition, undefined, undefined, line.size);
+            let measure = gCtx.measureText(line.text)
+            setLineSize(idx, measure.width, measure.actualBoundingBoxAscent)
+            if (!isDownload) markLine();
+        })
+
+    }
+}
+
+function markLine() {
+    let currLine = getCurrLine()
+    gCtx.beginPath()
+    gCtx.fillStyle = 'rgba(36, 35, 35, 0.35)';
+    gCtx.lineWidth = 3
+    gCtx.rect(currLine.xPosition - 10, currLine.yPosition - currLine.height - 5, currLine.width + 15, currLine.height + 15);
+    gCtx.stroke()
+    gCtx.fill()
 }
 
 function renderImgs(imgsToRender) {
@@ -109,9 +159,7 @@ function renderImgs(imgsToRender) {
     const elImgsContainer = document.querySelector('.imgs-container');
 
     var strHTML = imgsToRender.map(img => {
-        return `
-        <img src="${img.url}" onclick="onSelectMeme(${img.id})" alt="${img.name}" title="${img.name}" />
-        `
+        return `<img src="${img.url}" onclick="onSelectMeme(${img.id})" alt="${img.name}" title="${img.name}" />`
     })
 
     elImgsContainer.innerHTML = strHTML.join('');
@@ -132,5 +180,5 @@ function initCanvas(imgId) {
     gCtx = gCanvas.getContext('2d');
 
     resizeCanvas();
-    setMeme(imgId);
+    renderMeme(imgId);
 }
