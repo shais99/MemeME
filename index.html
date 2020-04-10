@@ -12,15 +12,19 @@
 
 <body onload="onInit()">
 
+    <section class="screen" onclick="toggleMenu()"></section>
+
     <header class="main-header flex space-between align-center">
         <a href="index.html">
             <h1 class="logo">MemeME</h1>
         </a>
         <ul class="main-nav clean-list flex">
+            <li class="quit-menu"><button onclick="toggleMenu()"></button></li>
             <li class="active"><a href="index.html">Home</a></li>
             <li><a href="memes.html">My Memes</a></li>
             <li><a href="#">About</a></li>
         </ul>
+        <button onclick="toggleMenu()" class="btn-menu"></button>
     </header>
 
     <main class="main-container">
@@ -75,24 +79,25 @@
                     <button class="align-right edit-btn fas fa-align-right" title="Move Text To Right"
                         onclick="onTextAlign('right')"></button>
 
-                        <button class="change-text-color edit-btn fas fa-palette" title="Change Text Color"
+                    <button class="change-text-color edit-btn fas fa-palette" title="Change Text Color"
                         onclick="onOpenChangeColor()"></button>
-                        <input type="color" name="font-color" onchange="onChangeFontColor()" value="#ffffff" hidden />
+                    <input type="color" name="font-color" onchange="onChangeFontColor()" value="#ffffff" hidden />
                 </div>
 
                 <div class="bottom-btns-container flex wrap">
 
-                    <a href="#" class="edit-download-meme bottom-btn" onmouseup="onDownloadMeme(this)" onmousedown="clearMark()"
-                        download="my-meme.jpg">Download</a>
+                    <a href="#" class="edit-download-meme bottom-btn" onmouseup="onDownloadMeme(this)"
+                        onmousedown="clearMark()" download="my-meme.jpg">Download</a>
 
                     <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                         <input name="img" id="imgData" type="hidden" />
                         <button class="fb-share btn share bottom-btn" onmousedown="clearMark()"
-                            type="submit">Share</button>
+                            ontouchstart="clearMark()" type="submit">Share</button>
                         <div class="share-container"></div>
                     </form>
 
-                    <button class="save-meme bottom-btn" onmousedown="clearMark()" onmouseup="onSaveMeme(event)" ontouchstart="clearMark()">Save Meme</button>
+                    <button class="save-meme bottom-btn" onmousedown="clearMark()" onmouseup="onSaveMeme(event)"
+                        ontouchstart="clearMark()">Save Meme</button>
 
                 </div>
 
@@ -106,7 +111,7 @@
     </footer>
 
     <div class="modal">
-        <div class="screen" onclick="onCloseModal()"></div>
+        <div class="modal-screen" onclick="onCloseModal()"></div>
         <div class="modal-container">
             <div class="modal-header">
                 <button class="close-modal fas fa-times-circle" onclick="onCloseModal()"></button>

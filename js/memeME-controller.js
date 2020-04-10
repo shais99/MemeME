@@ -11,6 +11,7 @@ function onSelectMeme(imgId) {
     initCanvas(imgId);
     setCurrMeme(imgId);
     setCurrTextInput();
+    if (window.outerWidth < 615) changeByRes();
     // listenResize();
 }
 
@@ -240,4 +241,12 @@ function initCanvas(imgId) {
     else resizeCanvas(500, 500);
 
     renderMeme(imgId);
+}
+
+function changeByRes() {
+    let lines = getLines();
+    lines.forEach(line => {
+        line.size = 30
+        line.xPosition = 10
+    })
 }

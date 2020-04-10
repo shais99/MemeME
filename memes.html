@@ -10,15 +10,19 @@
 </head>
 
 <body onload="onInitSaved()">
+    <section class="screen" onclick="toggleMenu()"></section>
+        
     <header class="main-header flex space-between align-center">
         <a href="index.html">
             <h1 class="logo">MemeME</h1>
         </a>
         <ul class="main-nav clean-list flex">
+            <li class="quit-menu"><button onclick="toggleMenu()"></button></li>
             <li><a href="index.html">Home</a></li>
             <li class="active"><a href="memes.html">My Memes</a></li>
             <li><a href="#">About</a></li>
         </ul>
+        <button onclick="toggleMenu()" class="btn-menu"></button>
     </header>
 
     <main class="main-container">

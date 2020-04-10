@@ -150,9 +150,9 @@ function setCurrMeme(imgId) {
         lines: [{
             id: makeId(),
             text: 'I dont like chocolate',
-            xPosition: gCanvas.width * 0.28,
+            xPosition: gCanvas.width * 0.165,
             yPosition: gCanvas.height * 0.20,
-            size: 25,
+            size: 40,
             font: 'Impact',
             align: 'center',
             color: 'white',
@@ -161,9 +161,9 @@ function setCurrMeme(imgId) {
         }, {
             id: makeId(),
             text: 'I eat chocolate all day',
-            xPosition: gCanvas.width * 0.26,
+            xPosition: gCanvas.width * 0.14,
             yPosition: gCanvas.height * 0.85,
-            size: 25,
+            size: 40,
             font: 'Impact',
             align: 'center',
             color: 'white',
