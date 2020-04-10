@@ -162,6 +162,53 @@ button {
     padding: 20px;
     font-size: 1.2rem;
     margin: 10px;
+    transition: .2s;
+    border-radius: 3px;
+}
+
+.edit-btn:hover {
+    background-color: rgb(95, 44, 130);
+    color: white;
+}
+
+.bottom-btns-container {
+    width: 100%;
+}
+
+.bottom-btn {
+    font-size: 1.2rem;
+    font-family: openSans-Bold, sans-serif;
+    transition: .3s;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    margin-left: 10px;
+}
+
+.edit-download-meme {
+    height: fit-content;
+    background-color: #4cd137;
+}
+
+.edit-download-meme:hover {
+    background-color: #258a16;
+}
+
+.fb-share {
+    background-color: #4267b2;
+}
+
+.fb-share:hover {
+    background-color: #29487d;
+}
+
+.save-meme {
+    height: fit-content;
+    background-color: rgb(153, 56, 218);
+}
+
+.save-meme:hover {
+    background-color: rgb(95, 44, 130);
 }
 
 .meme-text-container {
@@ -186,6 +233,37 @@ button {
     box-shadow: 0 0 16px rgba(23, 31, 45);
 }
 
+/* Saved Memes */
+
+.saved-memes-title {
+    font-family: openSans-bold, sans-serif;
+}
+
+.single-meme {
+    margin-bottom: 10px;
+}
+
+.saved-icon {
+    font-size: 1.375rem;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.delete-meme {
+    margin-right: 7px;
+}
+
+.delete-meme:hover {
+    color: #e84118;
+}
+
+.download-meme:hover {
+    color: #4cd137;
+}
+
+
+
+/* *** MEDIA QUERIES *** */
 
 @media (max-width: 1060px) {
     .make-meme-container {
@@ -197,8 +275,8 @@ button {
     }
 
     canvas {
-        width: 500px;
         margin: auto;
+        margin-bottom: 20px;
     }
 }
 
@@ -217,7 +295,7 @@ button {
     }
 
     canvas {
-        width: 100%;
+        /* width: 100%; */
         max-width: 500px;
     }
 }
@@ -226,6 +304,86 @@ button {
 
 
 /* *** HELPERS *** */
+
+/* Modal */
+
+.modal {
+    display: none;
+    height: 100%;
+}
+
+.screen {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.modal-container {
+    background-color: white;
+    width: 40%;
+    height: fit-content;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 39px 5px rgba(0, 0, 0, 0.75);
+}
+
+.modal-header {
+    padding: 12px 15px;
+}
+
+.modal-title {
+    font-family: openSans-bold, sans-serif;
+    font-size: 1.2rem;
+}
+
+.close-modal {
+    background-color: #dcdde1;
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    color: black;
+    padding: 10px;
+    border-radius: 50%;
+    transition: .3s;
+}
+
+.close-modal:hover {
+    background-color: #e84118;
+    color: white;
+}
+
+.modal-content {
+    padding: 30px;
+    margin-bottom: 10px;
+}
+
+.modal-submit {
+    border-radius: 3px;
+    font-family: openSans-Bold, sans-serif;
+    padding: 10px;
+}
+
+.modal-submit {
+    background-color: #4cd137;
+    transition: .5s;
+    color: white;
+}
+
+.modal-submit:hover {
+    background-color: #27bb10;
+}
 
 /* List Helpers */
 

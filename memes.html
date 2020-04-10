@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memeME - Make Your Own Meme For Free!</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="lib/fontawesome/css/all.css" rel="stylesheet">
+</head>
+
+<body onload="onInitSaved()">
+    <header class="main-header flex space-between align-center">
+        <a href="index.html">
+            <h1 class="logo">MemeME</h1>
+        </a>
+        <ul class="main-nav clean-list flex">
+            <li><a href="index.html">Home</a></li>
+            <li class="active"><a href="memes.html">My Memes</a></li>
+            <li><a href="#">About</a></li>
+        </ul>
+    </header>
+
+    <main class="main-container">
+
+        <h2 class="saved-memes-title">Your Saved Memes</h2>
+        <a href="index.html" hidden>Start Now!</a>
+        <div class="imgs-container"></div>
+
+    </main>
+
+    <footer class="main-footer flex align-center justify-center">
+        All rights reserved Shaiz &copy;
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/memeME-savedController.js"></script>
+    <script src="js/memeME-savedService.js"></script>
+</body>
+
+</html>

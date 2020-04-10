@@ -3,7 +3,11 @@
 var gImgs = [];
 var gMeme;
 var gSearchByImgs = []
+var gImgNextId = 101;
 
+function changeFontColor(fontColor) {
+    gMeme.lines[gMeme.selectedLineIdx].color = fontColor;
+}
 
 function findClickedLine(x, y) {
     return gMeme.lines.find((line) => {
@@ -54,8 +58,9 @@ function textAlign(alignTo) {
 
 function addLine() {
     gMeme.lines.push({
+        id: makeId(),
         text: 'New Line',
-        xPosition: gCanvas.width * 0.355,
+        xPosition: 250,
         yPosition: gCanvas.height / 2,
         size: 40,
         font: 'Impact',
@@ -88,9 +93,9 @@ function updateText(value) {
 }
 
 
-function resizeCanvas() {
-    gCanvas.width = 500;
-    gCanvas.height = 500;
+function resizeCanvas(width, height) {
+    gCanvas.width = width;
+    gCanvas.height = height;
 }
 
 function setCanvasText(text, x, y, fillStyle = 'white',
@@ -113,6 +118,7 @@ function createImgs() {
     gImgs.push(createImg('NO_NAME5', 'img/small-imgs/4.jpg', ['cat', 'cute']))
     gImgs.push(createImg('NO_NAME6', 'img/small-imgs/5.jpg', ['baby']))
     gImgs.push(createImg('NO_NAME8', 'img/small-imgs/7.jpg', ['baby']))
+    gImgs.push(createImg('NO_NAME8', 'img/small-imgs/nevo.jpg', ['nevo', 'cute']))
     gImgs.push(createImg('NO_NAME9', 'img/small-imgs/8.jpg', ['men', 'happy']))
     gImgs.push(createImg('NO_NAME10', 'img/big-imgs/img12.jpg', ['men', 'cute']))
     gImgs.push(createImg('NO_NAME11', 'img/small-imgs/9.jpg', ['baby', 'angry']))
@@ -130,7 +136,7 @@ function createImgs() {
 
 function createImg(name, url, keywords) {
     return {
-        id: makeId(),
+        id: gImgNextId++,
         name,
         url,
         keywords
@@ -144,9 +150,9 @@ function setCurrMeme(imgId) {
         lines: [{
             id: makeId(),
             text: 'I dont like chocolate',
-            xPosition: gCanvas.width * 0.165,
+            xPosition: gCanvas.width * 0.28,
             yPosition: gCanvas.height * 0.20,
-            size: 40,
+            size: 25,
             font: 'Impact',
             align: 'center',
             color: 'white',
@@ -155,9 +161,9 @@ function setCurrMeme(imgId) {
         }, {
             id: makeId(),
             text: 'I eat chocolate all day',
-            xPosition: gCanvas.width * 0.145,
+            xPosition: gCanvas.width * 0.26,
             yPosition: gCanvas.height * 0.85,
-            size: 40,
+            size: 25,
             font: 'Impact',
             align: 'center',
             color: 'white',
