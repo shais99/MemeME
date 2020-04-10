@@ -87,7 +87,7 @@
                 <div class="bottom-btns-container flex wrap">
 
                     <a href="#" class="edit-download-meme bottom-btn" onmouseup="onDownloadMeme(this)"
-                        onmousedown="clearMark()" download="my-meme.jpg">Download</a>
+                        onmousedown="clearMark()" ontouchstart="clearMark()" download="my-meme.jpg">Download</a>
 
                     <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                         <input name="img" id="imgData" type="hidden" />
