@@ -79,9 +79,8 @@
                     <button class="align-right edit-btn fas fa-align-right" title="Move Text To Right"
                         onclick="onTextAlign('right')"></button>
 
-                    <button class="change-text-color edit-btn fas fa-palette" title="Change Text Color"
-                        onclick="onOpenChangeColor()"></button>
-                    <input type="color" name="font-color" onchange="onChangeFontColor()" value="#ffffff" hidden />
+                    <label for="fontColorChange" class="change-text-color edit-btn fas fa-palette" title="Change Text Color"></label>
+                    <input type="color" name="font-color" id="fontColorChange" onchange="onChangeFontColor()" value="#ffffff" hidden />
                 </div>
 
                 <div class="bottom-btns-container flex wrap">

@@ -21,6 +21,27 @@
 
 /* *** BASICS *** */
 
+/* Scroll Bar */
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgb(95, 44, 130);
+    -webkit-border-radius: 100px;
+  }
+  
+  ::-webkit-scrollbar:hover {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+  
+  ::-webkit-scrollbar-thumb:vertical {
+    background: white;
+    -webkit-border-radius: 100px;
+  }
+  
+  ::-webkit-scrollbar-thumb:vertical:active {
+    -webkit-border-radius: 100px;
+  }
+
 body {
     background: -webkit-gradient(linear, left top, left bottom, from(rgb(95, 44, 130)), to(rgb(73, 160, 157))) fixed;
     margin: 0;
@@ -200,6 +221,11 @@ button {
     margin: 10px;
     transition: .2s;
     border-radius: 3px;
+}
+
+.change-text-color {
+    background-color: buttonface;
+    cursor: pointer;
 }
 
 .edit-btn:hover {
