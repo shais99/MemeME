@@ -140,7 +140,13 @@ function onTextAlign(alignTo) {
 }
 
 function onAddLine() {
-    addLine();
+    var xPosition = gCanvas.width / 2 - 72;
+    var lineSize = 40;
+    if (window.outerWidth < 615) {
+        xPosition = 85
+        lineSize = 30
+    }
+    addLine(xPosition, lineSize)
     renderMeme(gMeme.selectedImgId);
 
     gMeme.selectedLineIdx = gMeme.lines.length - 1

@@ -56,18 +56,13 @@ function textAlign(alignTo) {
     }
 }
 
-function addLine() {
+function addLine(xPosition, size = 40) {
     gMeme.lines.push({
         id: makeId(),
         text: 'New Line',
-        xPosition: 250,
+        xPosition,
+        size,
         yPosition: gCanvas.height / 2,
-        size: 40,
-        font: 'Impact',
-        align: 'center',
-        color: 'white',
-        width: 0,
-        height: 0
     })
 }
 
