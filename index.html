@@ -22,7 +22,7 @@
             <li class="quit-menu"><button onclick="toggleMenu()"></button></li>
             <li class="active"><a href="index.html">Home</a></li>
             <li><a href="memes.html">My Memes</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="https://www.linkedin.com/in/shai-sharakanski-7812b11a6/" target="_blank">About</a></li>
         </ul>
         <button onclick="toggleMenu()" class="btn-menu"></button>
     </header>
@@ -57,7 +57,7 @@
                     <input type="text" name="meme-text" onkeyup="onChangeValue(this)" value="" />
                 </div>
 
-                <div class="edit-btns-container">
+                <div class="edit-btns-container flex justify-center wrap align-start">
                     <button class="increase-text edit-btn fas fa-expand-arrows-alt" title="Increase Text"
                         onclick="onUpdateFontSize('1')"></button>
                     <button class="decrease-text edit-btn fas fa-compress-arrows-alt" title="Decrease Text"
@@ -83,7 +83,7 @@
                     <input type="color" name="font-color" id="fontColorChange" onchange="onChangeFontColor()" value="#ffffff" hidden />
                 </div>
 
-                <div class="bottom-btns-container flex wrap">
+                <div class="bottom-btns-container flex space-between">
 
                     <a href="#" class="edit-download-meme bottom-btn" onmouseup="onDownloadMeme(this)"
                         onmousedown="clearMark()" ontouchstart="clearMark()" download="my-meme.jpg">Download</a>

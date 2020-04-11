@@ -27,25 +27,27 @@
     width: 8px;
     background-color: rgb(95, 44, 130);
     -webkit-border-radius: 100px;
-  }
-  
-  ::-webkit-scrollbar:hover {
+}
+
+::-webkit-scrollbar:hover {
     background-color: rgba(0, 0, 0, 0.09);
-  }
-  
-  ::-webkit-scrollbar-thumb:vertical {
-    background: white;
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    background: rgb(159, 56, 228);
+    ;
     -webkit-border-radius: 100px;
-  }
-  
-  ::-webkit-scrollbar-thumb:vertical:active {
+}
+
+::-webkit-scrollbar-thumb:vertical:active {
     -webkit-border-radius: 100px;
-  }
+}
 
 body {
     background: -webkit-gradient(linear, left top, left bottom, from(rgb(95, 44, 130)), to(rgb(73, 160, 157))) fixed;
     margin: 0;
     font-family: openSans, sans-serif;
+    touch-action: manipulation;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -103,7 +105,7 @@ button {
 
 .main-header {
     background-color: white;
-    height: 11vh;
+    height: 10vh;
     box-shadow: 0 0 16px rgba(23, 31, 45);
     padding: 30px;
 }
@@ -150,7 +152,7 @@ button {
 .main-container {
     background-color: white;
     box-shadow: 0 0 16px rgba(23, 31, 45, 0.24);
-    margin: 50px auto;
+    margin: 20px auto;
     border-radius: 10px;
     padding: 30px;
     width: 85vw;
@@ -197,7 +199,6 @@ button {
 }
 
 .imgs-container {
-
     column-count: 5;
 }
 
@@ -238,17 +239,18 @@ button {
 }
 
 .bottom-btn {
-    font-size: 1.2rem;
     font-family: openSans-Bold, sans-serif;
     transition: .3s;
     border-radius: 5px;
-    padding: 10px;
     color: white;
-    margin-left: 10px;
+    height: 50px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .edit-download-meme {
-    height: fit-content;
     background-color: #4cd137;
 }
 
@@ -258,6 +260,7 @@ button {
 
 .fb-share {
     background-color: #4267b2;
+    font-size: 1rem
 }
 
 .fb-share:hover {
@@ -265,7 +268,6 @@ button {
 }
 
 .save-meme {
-    height: fit-content;
     background-color: rgb(153, 56, 218);
 }
 
@@ -284,7 +286,7 @@ button {
     font-family: impact, sans-serif;
     border-radius: 5px;
     border: 1px solid grey;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 /* Main Footer */
@@ -323,27 +325,37 @@ button {
     color: #4cd137;
 }
 
-
-
 /* *** MEDIA QUERIES *** */
 
 @media (max-width: 1060px) {
+    .meme-edit-container {
+        margin: 0;
+    }
     .make-meme-container {
         flex-direction: column;
     }
-
     .imgs-container {
         column-count: 3;
     }
-
     canvas {
         margin: auto;
         margin-bottom: 20px;
     }
+    .edit-btns-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-self: center;
+        justify-content: center;
+    }
+    .bottom-btns-container {
+        justify-content: center;
+    }
+    .bottom-btn {
+        width: 95px;
+    }
 }
 
 @media (max-width: 740px) {
-
     .btn-menu {
         background: url("../img/menu.png");
         width: 24px;
@@ -352,7 +364,6 @@ button {
         cursor: pointer;
         border: none;
     }
-
     .main-nav {
         position: fixed;
         top: 0;
@@ -365,27 +376,22 @@ button {
         transition: transform .6s;
         box-shadow: -4px 0px 5px 0px rgba(0, 0, 0, 0.5);
     }
-
     .main-nav li {
         background-color: transparent;
         width: unset;
         justify-content: flex-start;
     }
-
     .main-nav li a {
         color: white;
     }
-    
     .menu-open .main-nav {
         transform: translateX(0);
     }
-    
     .main-nav .quit-menu {
         visibility: visible;
         margin: 7px;
         background: none;
     }
-
     .quit-menu button {
         background: url("../img/quit.png");
         width: 24px;
@@ -393,31 +399,23 @@ button {
         border: none;
         cursor: pointer;
     }
-
 }
 
 @media (max-width: 660px) {
     .main-container {
-        padding: 10px;
+        padding: 25px;
     }
-
     .imgs-container {
         column-count: 1;
         text-align: center;
     }
-
     .imgs-container img {
         max-width: 500px;
     }
-
     canvas {
-        /* width: 100%; */
         max-width: 500px;
     }
 }
-
-
-
 
 /* *** HELPERS *** */
 
