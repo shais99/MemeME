@@ -14,30 +14,13 @@ function onSelectMeme(imgId) {
     if (window.outerWidth < 615) changeByRes();
     dragAndDrop();
     touchEvent();
+    disDoubleTap();
 }
 
 function onInit() {
     createImgs();
     renderImgs();
 }
-
-function touchEvent() {
-    var hammertime = new Hammer(gCanvas);
-    hammertime.on('pan', function (ev) {
-        if (ev.pointerType === 'mouse') return;
-
-        let offsetX = ev.srcEvent.offsetX
-        let offsetY = ev.srcEvent.offsetY
-
-        var currLine = gMeme.lines[gMeme.selectedLineIdx]
-        
-        currLine.xPosition = offsetX / 2
-        currLine.yPosition = offsetY
-
-        renderMeme(gMeme.selectedImgId)
-    });
-}
-
 
 function onChangeFontColor() {
     const fontColorInput = document.querySelector('input[name="font-color"]');

@@ -5,6 +5,30 @@ var gMeme;
 var gSearchByImgs = []
 var gImgNextId = 101;
 
+function disDoubleTap() {
+    var hammertime = new Hammer(gCanvas);
+    hammertime.on('doubletap', function (ev) {
+        return;
+    });
+}
+
+function touchEvent() {
+    var hammertime = new Hammer(gCanvas);
+    hammertime.on('pan', function (ev) {
+        if (ev.pointerType === 'mouse') return;
+
+        let offsetX = ev.srcEvent.offsetX
+        let offsetY = ev.srcEvent.offsetY
+
+        var currLine = gMeme.lines[gMeme.selectedLineIdx]
+        
+        currLine.xPosition = offsetX / 2
+        currLine.yPosition = offsetY
+
+        renderMeme(gMeme.selectedImgId)
+    });
+}
+
 function dragAndDrop() {
     gElCanvas.addEventListener('mousedown', ev => {
         if (gIsText) gIsMovingText = true
@@ -49,7 +73,7 @@ function searchBy(value) {
     const imgs = getImgs();
     imgs.forEach((img, imgIdx) => {
         img.keywords.find(keyword => {
-            if (keyword === value) gSearchByImgs.push(gImgs[imgIdx])
+            if (keyword.toLowerCase() === value.toLowerCase()) gSearchByImgs.push(gImgs[imgIdx])
         })
     })
 }
