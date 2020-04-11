@@ -5,6 +5,24 @@ var gMeme;
 var gSearchByImgs = []
 var gImgNextId = 101;
 
+function dragAndDrop() {
+    gElCanvas.addEventListener('mousedown', ev => {
+        if (gIsText) gIsMovingText = true
+    })
+
+    gElCanvas.addEventListener('mousemove', ev => {
+        if (!gIsMovingText) return;
+        var currLine = gMeme.lines[gMeme.selectedLineIdx]
+        currLine.xPosition = ev.offsetX / 2
+        currLine.yPosition = ev.offsetY
+        renderMeme(gMeme.selectedImgId)
+    })
+
+    gElCanvas.addEventListener('mouseup', ev => {
+        gIsMovingText = false;
+    })
+}
+
 function changeFontColor(fontColor) {
     gMeme.lines[gMeme.selectedLineIdx].color = fontColor;
 }

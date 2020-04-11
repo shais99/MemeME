@@ -12,7 +12,8 @@ function onSelectMeme(imgId) {
     setCurrMeme(imgId);
     setCurrTextInput();
     if (window.outerWidth < 615) changeByRes();
-    // listenResize();
+    dragAndDrop();
+    touchEvent();
 }
 
 function onInit() {
@@ -20,35 +21,22 @@ function onInit() {
     renderImgs();
 }
 
-// function listenResize() {
-//     window.addEventListener('resize', () => {
-//         // gCanvas.width = window.innerWidth
-//         // gCanvas.height = window.innerHeight
-//         console.log('gCanvas width', gCanvas.width);
-//         console.log('gCanvas height', gCanvas.height);
+function touchEvent() {
+    var hammertime = new Hammer(gCanvas);
+    hammertime.on('pan', function (ev) {
+        if (ev.pointerType === 'mouse') return;
 
-//         console.log('window innerWidth', window.innerWidth);
-//         console.log('window innerHeight', window.innerHeight);
+        let offsetX = ev.srcEvent.offsetX
+        let offsetY = ev.srcEvent.offsetY
 
-//     })
-// }
+        var currLine = gMeme.lines[gMeme.selectedLineIdx]
+        
+        currLine.xPosition = offsetX / 2
+        currLine.yPosition = offsetY
 
-gElCanvas.addEventListener('mousedown', ev => {
-    if (gIsText) gIsMovingText = true
-})
-
-gElCanvas.addEventListener('mousemove', ev => {
-    if (!gIsMovingText) return;
-    var currLine = gMeme.lines[gMeme.selectedLineIdx]
-    currLine.xPosition = ev.offsetX / 2
-    currLine.yPosition = ev.offsetY
-    renderMeme(gMeme.selectedImgId)
-})
-
-gElCanvas.addEventListener('mouseup', ev => {
-    gIsMovingText = false;
-})
-
+        renderMeme(gMeme.selectedImgId)
+    });
+}
 
 
 function onChangeFontColor() {

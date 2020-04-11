@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <title>memeME - Make Your Own Meme For Free!</title>
     <link rel="stylesheet" href="css/main.css">
     <link href="lib/fontawesome/css/all.css" rel="stylesheet">
@@ -49,7 +49,7 @@
 
         <section class="make-meme-container">
 
-            <canvas id="make-meme" onmousedown="onChangeSelected(event)"></canvas>
+            <canvas id="make-meme" onmousedown="onChangeSelected(event)" ontouchmove="event.preventDefault()"></canvas>
 
             <div class="meme-edit-container flex wrap">
 
@@ -120,6 +120,7 @@
     </div>
 
     <script src="js/utils.js"></script>
+    <script src="lib/hammerJs/hammer.min.js"></script>
     <script src="js/upload-service.js"></script>
     <script src="js/memeME-savedController.js"></script>
     <script src="js/memeME-controller.js"></script>

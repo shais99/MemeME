@@ -216,6 +216,7 @@ button {
 }
 
 .edit-btn {
+    background-color: #f5f6fa;
     padding: 20px;
     font-size: 1.2rem;
     margin: 10px;
@@ -224,7 +225,6 @@ button {
 }
 
 .change-text-color {
-    background-color: buttonface;
     cursor: pointer;
 }
 
