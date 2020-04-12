@@ -111,13 +111,18 @@ button {
     padding: 30px;
 }
 
-.main-header .logo {
+.logo h1 {
     font-family: impact, sans-serif;
-    background: -webkit-linear-gradient(rgb(95, 44, 130), rgb(73, 160, 157));
+    background: -webkit-linear-gradient(rgb(73, 160, 157), rgb(95, 44, 130));
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     letter-spacing: -2px;
-    font-size: 40px;
+    font-size: 2.5rem;
+}
+
+.logo img {
+    height: 10vh;
+    margin-right: 15px;
 }
 
 .btn-menu {
@@ -227,6 +232,12 @@ button {
 
 .imgs-container img:hover {
     filter: brightness(70%);
+    -webkit-animation-duration: 1s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
 }
 
 .meme-edit-container {
@@ -249,6 +260,42 @@ button {
 .edit-btn:hover {
     background-color: rgb(95, 44, 130);
     color: white;
+}
+
+.delete-line:hover {
+    background-color: #e84118;
+}
+
+.add-line:hover {
+    background-color: #4cd137;
+}
+
+.switch-line:hover {
+    background-color: #273c75;
+}
+
+.increase-text:hover {
+    background-color: #00a8ff;
+}
+
+.decrease-text:hover {
+    background-color: #0097e6;
+}
+
+.change-text-color:hover {
+    background: -webkit-linear-gradient(rgb(73, 160, 157), rgb(95, 44, 130));
+}
+
+.text-align-left:hover {
+    background-color: #8d7de0;
+}
+
+.text-align-center:hover {
+    background-color: #7463c9;
+}
+
+.text-align-right:hover {
+    background-color: #6f62ad;
 }
 
 .bottom-btns-container {
@@ -343,9 +390,63 @@ button {
     color: #4cd137;
 }
 
+.instructions {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: 10px;
+    width: 100%;
+    transition: .5s;
+}
+
+.inst-inline-edit {
+    background: rgb(153, 56, 218);
+}
+
+.inst-inline-edit:hover {
+    background: rgb(117, 41, 168);
+}
+
+.inst-saved-memes {
+    background: rgb(74, 185, 182);
+}
+
+.inst-saved-memes:hover {
+    background: rgb(21, 134, 131);
+}
+
+.inline-input {
+    display: none;
+    position: absolute;
+    height: 40px;
+    width: 500px;
+    left: 0px;
+    top: 0px;
+}
+
+.inline-input input {
+    background-color: rgba(255, 0, 0, 0.2);
+    outline: rgba(23, 31, 45, 1);
+    border: none;
+    width: 100%;
+    height: 100%;
+    -webkit-text-stroke: 1.6px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px;
+    text-align: center;
+}
+
 /* *** MEDIA QUERIES *** */
 
 @media (max-width: 1060px) {
+    .logo h1 {
+        font-size: 2rem;
+    }
+    .logo img {
+        margin-right: 10px;
+    }
     .make-meme-container .inline-input {
         width: 100%;
     }
@@ -571,30 +672,4 @@ button {
 
 .flex.align-start {
     align-items: flex-start;
-}
-
-
-
-
-
-.inline-input {
-    display: none;
-    position: absolute;
-    height: 40px;
-    width: 500px;
-    left: 0px; /**/
-    top: 0px; /**/
-}
-
-.inline-input input {
-    background-color: rgba(255, 0, 0, 0.2);
-    outline: rgba(23, 31, 45, 1);
-    border: none;
-    width: 100%;
-    height: 100%;
-    -webkit-text-stroke: 1.6px rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 40px;
-    text-align: center;
 }

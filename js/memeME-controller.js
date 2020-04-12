@@ -297,7 +297,7 @@ function onInlineEdit() {
     var input = document.querySelector('.inline-input input');
     inputWraper.style.left = `0px`;
     inputWraper.style.top = currLine.yPosition - currLine.height + `px`;
-    inputWraper.style.height = currLine.height + `px`;
+    inputWraper.style.height = currLine.height + 10 + `px`;
     input.style.fontSize = currLine.size + 'px';
     inputWraper.style.display = 'block';
     input.value = currLine.text;

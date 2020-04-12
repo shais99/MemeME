@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/main.css">
     <link href="lib/fontawesome/css/all.css" rel="stylesheet">
     <link href="css/list/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate/animate.css">
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
 </head>
 
 <body onload="onInit()">
@@ -15,9 +17,12 @@
     <section class="screen" onclick="toggleMenu()"></section>
 
     <header class="main-header flex space-between align-center">
-        <a href="index.html">
-            <h1 class="logo">MemeME</h1>
-        </a>
+        <div class="logo flex align-center">
+            <img src="img/logo.png" alt="">
+            <a href="index.html">
+                <h1>MemeME</h1>
+            </a>
+        </div>
         <ul class="main-nav clean-list flex">
             <li class="quit-menu"><button onclick="toggleMenu()"></button></li>
             <li class="active"><a href="index.html">Home</a></li>
@@ -53,13 +58,14 @@
 
         <section class="imgs-container"></section>
 
-        
+
         <section class="make-meme-container">
             <div class="inline-input">
                 <input type="text" onkeyup="onInlineChangeText(this, event)" onfocusout="onInlineChangeFinish()">
             </div>
 
-            <canvas id="make-meme" onmousedown="onChangeSelected(event)" ondblclick="onInlineEdit()" ontouchmove="event.preventDefault()"></canvas>
+            <canvas id="make-meme" onmousedown="onChangeSelected(event)" ondblclick="onInlineEdit()"
+                ontouchmove="event.preventDefault()"></canvas>
 
             <div class="meme-edit-container flex wrap">
 
@@ -82,17 +88,24 @@
                         onclick="onAddLine()"></button>
                     <button class="delete-line edit-btn fas fa-trash-alt" title="Delete Text"
                         onclick="onDeleteLine()"></button>
-                    <button class="align-left edit-btn fas fa-align-left" title="Move Text To Left"
+                    <button class="text-align-left edit-btn fas fa-align-left" title="Move Text To Left"
                         onclick="onTextAlign('left')"></button>
-                    <button class="align-center edit-btn fas fa-align-center" title="Move Text To Center"
+                    <button class="text-align-center edit-btn fas fa-align-center" title="Move Text To Center"
                         onclick="onTextAlign('center')"></button>
-                    <button class="align-right edit-btn fas fa-align-right" title="Move Text To Right"
+                    <button class="text-align-right edit-btn fas fa-align-right" title="Move Text To Right"
                         onclick="onTextAlign('right')"></button>
 
                     <label for="fontColorChange" class="change-text-color edit-btn fas fa-palette"
                         title="Change Text Color"></label>
                     <input type="color" name="font-color" id="fontColorChange" onchange="onChangeFontColor()"
                         value="#ffffff" hidden />
+
+                    <div class="instructions inst-inline-edit animated flash">
+                        <h3>Double click on text for inline edit</h3>
+                    </div>
+                    <a href="memes.html" class="instructions inst-saved-memes animated flash">
+                        Click to see your saved memes
+                    </a>
                 </div>
 
                 <div class="bottom-btns-container flex space-between">

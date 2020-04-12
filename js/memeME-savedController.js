@@ -16,7 +16,7 @@ function renderSavedMemes() {
         document.querySelector('.saved-memes-title').innerText = 'No Saved Memes!';
     }
     var strHTML = gSavedMemes.map((meme, idx) => {
-        return `<div class="single-meme">
+        return `<div class="single-meme animated tada faster">
             <img src="${meme.imgContent}" onclick="onOpenSaved('${meme.imgContent}')" alt="" />
             <a class="delete-meme saved-icon fas fa-trash-alt" onclick="onDeleteMeme(${idx})"></a>
             <a href="#" class="download-meme saved-icon fas fa-download" onmouseup="onDownloadMeme(this, '${meme.imgContent}')" download="my-meme.jpg"></a>
