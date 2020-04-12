@@ -155,7 +155,7 @@ button {
     margin: 20px auto;
     border-radius: 10px;
     padding: 30px;
-    width: 85vw;
+    width: 1000px;
 }
 
 .search-by {
@@ -192,10 +192,26 @@ button {
     display: none;
 }
 
+.upload-img-container {
+    margin: 30px auto;
+}
+
+.upload-img-title {
+    margin-bottom: 10px;
+    font-family: openSans-Bold, sans-serif;
+}
+
+.upload-img {
+    border: 1px solid #e6e6e6;
+    padding: 5px;
+    border-radius: 3px;
+}
+
 /* Make Meme Container */
 
 .main-container .make-meme-container {
     display: none;
+    position: relative;
 }
 
 .imgs-container {
@@ -236,6 +252,7 @@ button {
 
 .bottom-btns-container {
     width: 100%;
+    align-items: flex-end;
 }
 
 .bottom-btn {
@@ -328,8 +345,19 @@ button {
 /* *** MEDIA QUERIES *** */
 
 @media (max-width: 1060px) {
+    .make-meme-container .inline-input {
+        width: 100%;
+    }
+    .main-container {
+        width: 85vw;
+        width: 560px;
+    }
+    .search-btn {
+        height: 50px;
+        margin-left: -2px;
+    }
     .meme-edit-container {
-        margin: 0;
+        margin-left: 0px;
     }
     .make-meme-container {
         flex-direction: column;
@@ -353,9 +381,15 @@ button {
     .bottom-btn {
         width: 95px;
     }
+    .fb-share {
+        margin: 0 10px;
+    }
 }
 
 @media (max-width: 740px) {
+    .main-container {
+        width: 85vw;
+    }
     .btn-menu {
         background: url("../img/menu.png");
         width: 24px;
@@ -535,4 +569,31 @@ button {
 
 .flex.align-start {
     align-items: flex-start;
+}
+
+
+
+
+
+.inline-input {
+    display: none;
+    position: absolute;
+    height: 40px;
+    width: 50%;
+    left: 0px; /**/
+    top: 0px; /**/
+}
+
+.inline-input input {
+    background-color: transparent;
+    outline: rgba(23, 31, 45, 1);
+    border: none;
+    width: 100%;
+    height: 100%;
+    -webkit-text-stroke: 1.6px rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px;
+    padding: 0 10px;
+    text-align: center;
 }

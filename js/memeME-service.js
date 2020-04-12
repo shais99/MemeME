@@ -21,8 +21,8 @@ function touchEvent() {
         let offsetY = ev.srcEvent.offsetY
 
         var currLine = gMeme.lines[gMeme.selectedLineIdx]
-        
-        currLine.xPosition = offsetX / 2
+
+        currLine.xPosition = offsetX - (currLine.width / 2)
         currLine.yPosition = offsetY
 
         renderMeme(gMeme.selectedImgId)
@@ -37,9 +37,12 @@ function dragAndDrop() {
     gElCanvas.addEventListener('mousemove', ev => {
         if (!gIsMovingText) return;
         var currLine = gMeme.lines[gMeme.selectedLineIdx]
-        currLine.xPosition = ev.offsetX / 2
+        
+        currLine.xPosition = ev.offsetX - (currLine.width / 2)
         currLine.yPosition = ev.offsetY
-        renderMeme(gMeme.selectedImgId)
+
+        if (!gIsUpload) renderMeme(gMeme.selectedImgId)
+        else renderMeme(undefined)
     })
 
     gElCanvas.addEventListener('mouseup', ev => {
@@ -180,7 +183,7 @@ function createImg(name, url, keywords) {
     }
 }
 
-function setCurrMeme(imgId) {
+function setCurrMeme(imgId = undefined) {
     gMeme = {
         selectedImgId: imgId,
         selectedLineIdx: 0,
@@ -220,4 +223,10 @@ function getLines() {
 
 function getImgs() {
     return gImgs;
+}
+
+function getSelectedImg(imgId) {
+    return gImgs.find(img => {
+        return imgId === img.id;
+    })
 }

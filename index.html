@@ -44,12 +44,22 @@
                 <option value="obama"></option>
             </datalist>
         </form>
+        <div class="upload-img-container flex align-center column">
+            <h3 class="upload-img-title">Upload Your Image:</h3>
+            <form>
+                <input type="file" class="upload-img" name="upload-img" onchange="onUploadImg(event)" />
+            </form>
+        </div>
 
         <section class="imgs-container"></section>
 
+        
         <section class="make-meme-container">
+            <div class="inline-input">
+                <input type="text" onkeyup="onInlineChangeText(this, event)" onfocusout="onInlineChangeFinish()">
+            </div>
 
-            <canvas id="make-meme" onmousedown="onChangeSelected(event)" ontouchmove="event.preventDefault()"></canvas>
+            <canvas id="make-meme" onmousedown="onChangeSelected(event)" ondblclick="onTnlineEdit()" ontouchmove="event.preventDefault()"></canvas>
 
             <div class="meme-edit-container flex wrap">
 
@@ -62,10 +72,10 @@
                         onclick="onUpdateFontSize('1')"></button>
                     <button class="decrease-text edit-btn fas fa-compress-arrows-alt" title="Decrease Text"
                         onclick="onUpdateFontSize('-1')"></button>
-                    <button class="move-up edit-btn fas fa-chevron-circle-up" title="Move Text Up"
+                    <!-- <button class="move-up edit-btn fas fa-chevron-circle-up" title="Move Text Up"
                         onclick="onMoveLine('-10')"></button>
                     <button class="move-down edit-btn fas fa-chevron-circle-down" title="Move Text Down"
-                        onclick="onMoveLine('10')"></button>
+                        onclick="onMoveLine('10')"></button> -->
                     <button class="switch-line edit-btn fas fa-sync-alt" title="Switch To Another Text"
                         onclick="onSwitchLine()"></button>
                     <button class="add-line edit-btn fas fa-plus-circle" title="Add New Text"
@@ -79,8 +89,10 @@
                     <button class="align-right edit-btn fas fa-align-right" title="Move Text To Right"
                         onclick="onTextAlign('right')"></button>
 
-                    <label for="fontColorChange" class="change-text-color edit-btn fas fa-palette" title="Change Text Color"></label>
-                    <input type="color" name="font-color" id="fontColorChange" onchange="onChangeFontColor()" value="#ffffff" hidden />
+                    <label for="fontColorChange" class="change-text-color edit-btn fas fa-palette"
+                        title="Change Text Color"></label>
+                    <input type="color" name="font-color" id="fontColorChange" onchange="onChangeFontColor()"
+                        value="#ffffff" hidden />
                 </div>
 
                 <div class="bottom-btns-container flex space-between">
