@@ -228,6 +228,7 @@ function renderMeme(imgId, isDownload = false) {
 
 function markLine() {
     let currLine = getCurrLine()
+    if (!currLine.text) return;
     gCtx.beginPath()
     gCtx.fillStyle = 'rgba(255, 0, 0, 0.1)';
     gCtx.lineWidth = 3
@@ -288,7 +289,7 @@ function changeByRes() {
 
 
 
-function onTnlineEdit() {
+function onInlineEdit() {
     let meme = getMeme();
     var currLine = getCurrLine();
     
