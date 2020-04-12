@@ -90,6 +90,7 @@ button {
     visibility: hidden;
     opacity: 0;
     transition: opacity .6s;
+    z-index: 998;
 }
 
 .menu-open .screen {
@@ -409,6 +410,7 @@ button {
         transform: translateX(105%);
         transition: transform .6s;
         box-shadow: -4px 0px 5px 0px rgba(0, 0, 0, 0.5);
+        z-index: 999;
     }
     .main-nav li {
         background-color: transparent;
