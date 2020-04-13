@@ -11,9 +11,14 @@ var gUploadSrc;
 var gCurrInputValue;
 var gIsInlineEdit = false;
 
-function onSelectMeme(imgId) {
-    initCanvas(imgId);
-    setCurrMeme(imgId);
+function renderCanvas(imgId) {
+    if (!gIsUpload) {
+        initCanvas(imgId)
+        setCurrMeme(imgId)
+    } else {
+        initCanvas();
+        setCurrMeme();
+    }
     setCurrTextInput();
     if (window.outerWidth < 615) {
         changeByRes();
@@ -24,18 +29,31 @@ function onSelectMeme(imgId) {
     touchEvent();
 }
 
-function renderUpload() {
-    renderPageCanvas();
-    setCurrMeme();
-    setCurrTextInput();
-    if (window.outerWidth < 615) {
-        changeByRes();
-        doubleTapEdit();
-        pinchOut();
-    } 
-    dragAndDrop();
-    touchEvent();
-}
+// function onSelectMeme(imgId) {
+//     initCanvas(imgId);
+//     setCurrMeme(imgId);
+//     setCurrTextInput();
+//     if (window.outerWidth < 615) {
+//         changeByRes();
+//         doubleTapEdit();
+//         pinchOut();
+//     }
+//     dragAndDrop();
+//     touchEvent();
+// }
+
+// function renderUpload() {
+//     renderPageCanvas();
+//     setCurrMeme();
+//     setCurrTextInput();
+//     if (window.outerWidth < 615) {
+//         changeByRes();
+//         doubleTapEdit();
+//         pinchOut();
+//     } 
+//     dragAndDrop();
+//     touchEvent();
+// }
 
 function onInit() {
     createImgs();
@@ -50,7 +68,7 @@ function onUploadImg(ev) {
         img.src = event.target.result;
         gUploadSrc = img.src
         gIsUpload = true
-        renderUpload();
+        renderCanvas();
         renderMeme(undefined, false)
     }
 
@@ -254,7 +272,7 @@ function renderImgs(imgsToRender) {
     const elImgsContainer = document.querySelector('.imgs-container');
 
     var strHTML = imgsToRender.map(img => {
-        return `<img src="${img.url}" onclick="onSelectMeme(${img.id})" alt="${img.name}" title="${img.name}" />`
+        return `<img src="${img.url}" onclick="renderCanvas(${img.id})" alt="${img.name}" title="${img.name}" />`
     })
 
     elImgsContainer.innerHTML = strHTML.join('');

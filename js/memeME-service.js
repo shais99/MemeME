@@ -8,6 +8,7 @@ var gImgNextId = 101;
 function pinchOut() {
     var hammertime = new Hammer(gCanvas);
     hammertime.get('pinch').set({ enable: true });
+
     hammertime.on('pinchout', function (ev) {
         let currLine = getCurrLine();
         currLine.size += 0.2
@@ -52,7 +53,7 @@ function dragAndDrop() {
     gElCanvas.addEventListener('mousemove', ev => {
         if (!gIsMovingText) return;
         var currLine = gMeme.lines[gMeme.selectedLineIdx]
-        
+
         currLine.xPosition = ev.offsetX - (currLine.width / 2)
         currLine.yPosition = ev.offsetY
 
