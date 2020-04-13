@@ -352,6 +352,9 @@ function onInlineChangeFinish() {
     gIsInlineEdit = false;
     
     inputWraper.style.display = 'none';
+    
+    if (!gCurrInputValue) gCurrInputValue = 'It\'s empty.';
+    
     currLine.text = gCurrInputValue
     renderMeme(meme.selectedImgId);
 }

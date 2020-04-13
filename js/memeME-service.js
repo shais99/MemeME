@@ -31,7 +31,7 @@ function doubleTapEdit() {
 function touchEvent() {
     var hammertime = new Hammer(gCanvas);
     hammertime.on('pan', function (ev) {
-        if (ev.pointerType === 'mouse') return;
+        // if (ev.pointerType === 'mouse') return;
 
         let offsetX = ev.srcEvent.offsetX
         let offsetY = ev.srcEvent.offsetY
