@@ -92,6 +92,8 @@ function onSaveMeme(ev) {
     setTimeout(onCloseModal, 2000);
 
     let imgContent = gCanvas.toDataURL();
+    console.log(imgContent);
+    
     if (!gSavedMemes || !gSavedMemes.length) gSavedMemes = []
 
     let meme = getMeme();
