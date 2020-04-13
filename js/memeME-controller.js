@@ -10,6 +10,8 @@ var gIsUpload = false;
 var gUploadSrc;
 var gCurrInputValue;
 var gIsInlineEdit = false;
+const EMPTY_TEXT = 'It\'s empty.'
+const MOBILE_SIZE = 615;
 
 function renderCanvas(imgId) {
     if (!gIsUpload) {
@@ -20,13 +22,18 @@ function renderCanvas(imgId) {
         setCurrMeme();
     }
     setCurrTextInput();
-    if (window.outerWidth < 615) {
+    if (window.outerWidth < MOBILE_SIZE) {
         changeByRes();
         doubleTapEdit();
         pinchOut();
     }
     dragAndDrop();
     touchEvent();
+}
+
+function initCanvas(imgId) {
+    renderPageCanvas();
+    renderMeme(imgId);
 }
 
 // function onSelectMeme(imgId) {
@@ -69,7 +76,7 @@ function onUploadImg(ev) {
         gUploadSrc = img.src
         gIsUpload = true
         renderCanvas();
-        renderMeme(undefined, false)
+        renderMeme();
     }
 
     // const maxAllowedSize = 1024 * 250
@@ -159,11 +166,6 @@ function onSearchBy(value) {
     renderImgs(gSearchByImgs);
 }
 
-function onChangeSearchText(searchText) {
-    const elSearchInput = document.querySelector('input[name="search-input"]');
-    elSearchInput.placeholder = searchText;
-}
-
 function onDeleteLine() {
     let meme = getMeme();
     if (meme.lines.length <= 0) return;
@@ -181,7 +183,7 @@ function onTextAlign(alignTo) {
 function onAddLine() {
     var xPosition = gCanvas.width / 2 - 72;
     var lineSize = 40;
-    if (window.outerWidth < 615) {
+    if (window.outerWidth < MOBILE_SIZE) {
         xPosition = 85
         lineSize = 30
     }
@@ -218,7 +220,19 @@ function onChangeValue(el) {
     let meme = getMeme();
     if (meme.lines.length <= 0) return;
     updateText(el.value);
+    let line = getCurrLine();
+    if (!line.text) setCurrTextInput();
     renderMeme(meme.selectedImgId);
+}
+
+function onCheckEmpty(el) {
+    let currLine = getCurrLine();
+    let meme = getMeme();
+    if (!el.value) {
+        currLine.text = EMPTY_TEXT;
+        setCurrTextInput()
+        renderMeme(meme.selectedImgId)
+    }
 }
 
 function setCurrTextInput() {
@@ -227,7 +241,7 @@ function setCurrTextInput() {
     elMemeText.value = meme.lines[meme.selectedLineIdx].text
 }
 
-function renderMeme(imgId, isDownload = false) {
+function renderMeme(imgId = null, isDownload = false) {
 
     var foundImg;
     if (!gIsUpload) foundImg = getSelectedImg(imgId);
@@ -240,7 +254,6 @@ function renderMeme(imgId, isDownload = false) {
     var img = new Image();
     img.src = foundImg.url;
     img.onload = () => {
-
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 
         let lines = getLines();
@@ -251,7 +264,6 @@ function renderMeme(imgId, isDownload = false) {
             setLineSize(idx, measure.width, measure.actualBoundingBoxAscent);
         })
         if (!isDownload) markLine();
-
     }
 }
 
@@ -259,7 +271,7 @@ function markLine() {
     let currLine = getCurrLine()
     if (!currLine.text) return;
     gCtx.beginPath()
-    gCtx.fillStyle = 'rgba(255, 0, 0, 0.1)';
+    gCtx.fillStyle = 'rgba(95, 44, 130, 0.2)';
     gCtx.lineWidth = 3
     gCtx.rect(currLine.xPosition - 10, currLine.yPosition - currLine.height - 5, currLine.width + 15, currLine.height + 15);
     gCtx.stroke()
@@ -277,11 +289,6 @@ function renderImgs(imgsToRender) {
 
     elImgsContainer.innerHTML = strHTML.join('');
     gSearchByImgs = []
-}
-
-function initCanvas(imgId) {
-    renderPageCanvas();
-    renderMeme(imgId);
 }
 
 function renderPageCanvas() {
@@ -302,7 +309,7 @@ function renderPageCanvas() {
     gCtx = gCanvas.getContext('2d');
 
 
-    if (window.outerWidth < 615) resizeCanvas(300, 300);
+    if (window.outerWidth < MOBILE_SIZE) resizeCanvas(300, 300);
     else resizeCanvas(500, 500);
 }
 
@@ -350,11 +357,15 @@ function onInlineChangeFinish() {
     const currLine = getCurrLine();
     const inputWraper = document.querySelector('.inline-input');
     gIsInlineEdit = false;
-    
+
     inputWraper.style.display = 'none';
-    
-    if (!gCurrInputValue) gCurrInputValue = 'It\'s empty.';
-    
+
+    if (!gCurrInputValue) {
+        gCurrInputValue = EMPTY_TEXT;
+        currLine.text = EMPTY_TEXT;
+        setCurrTextInput();
+    }
+
     currLine.text = gCurrInputValue
     renderMeme(meme.selectedImgId);
 }

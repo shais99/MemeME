@@ -433,7 +433,7 @@ a.instructions {
 }
 
 .inline-input input {
-    background-color: rgba(255, 0, 0, 0.2);
+    background-color: rgba(95, 44, 130, 0.2);
     outline: rgba(23, 31, 45, 1);
     border: none;
     width: 100%;

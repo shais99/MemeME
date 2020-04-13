@@ -34,9 +34,8 @@
 
     <main class="main-container">
         <form class="search-by flex justify-center" onsubmit="event.preventDefault()">
-            <input type="text" list="images" class="search-input" name="search-input"
-                onmouseover="onChangeSearchText('Search NOW!!!')" oninput="onSearchBy(this.value)"
-                onmouseout="onChangeSearchText('Search By...')" placeholder="Search By..." />
+            <input type="text" list="images" class="search-input" name="search-input" oninput="onSearchBy(this.value)"
+                placeholder="Search By..." />
             <button class="search-btn fas fa-search"></button>
             <datalist id="images">
                 <option value="cat"></option>
@@ -77,7 +76,7 @@
                 </a>
 
                 <div class="meme-text-container">
-                    <input type="text" name="meme-text" onkeyup="onChangeValue(this)" />
+                    <input type="text" name="meme-text" onkeyup="onChangeValue(this)" onfocusout="onCheckEmpty(this)" />
                 </div>
 
                 <div class="edit-btns-container flex justify-center wrap align-start">
