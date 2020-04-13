@@ -392,12 +392,16 @@ button {
 
 .instructions {
     text-align: center;
-    padding: 20px;
     border-radius: 10px;
     color: white;
-    margin-bottom: 10px;
     width: 100%;
+    height: 50px;
     transition: .5s;
+    font-size: .8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: openSans-Bold, sans-serif;
 }
 
 .inst-inline-edit {
@@ -410,6 +414,10 @@ button {
 
 .inst-saved-memes {
     background: rgb(74, 185, 182);
+}
+
+a.instructions {
+    font-size: 1rem;
 }
 
 .inst-saved-memes:hover {
@@ -486,6 +494,9 @@ button {
     .fb-share {
         margin: 0 10px;
     }
+    .instructions {
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 740px) {
@@ -539,6 +550,9 @@ button {
 }
 
 @media (max-width: 660px) {
+    .search-input {
+        width: 70%;
+    }
     .main-container {
         padding: 25px;
     }

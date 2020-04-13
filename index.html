@@ -69,8 +69,15 @@
 
             <div class="meme-edit-container flex wrap">
 
+                <div class="instructions inst-inline-edit animated flash">
+                    <h3>Double click on text for inline edit</h3>
+                </div>
+                <a href="memes.html" target="_blank" class="instructions inst-saved-memes animated flash">
+                    Click to see your saved memes
+                </a>
+
                 <div class="meme-text-container">
-                    <input type="text" name="meme-text" onkeyup="onChangeValue(this)" value="" />
+                    <input type="text" name="meme-text" onkeyup="onChangeValue(this)" />
                 </div>
 
                 <div class="edit-btns-container flex justify-center wrap align-start">
@@ -99,13 +106,6 @@
                         title="Change Text Color"></label>
                     <input type="color" name="font-color" id="fontColorChange" onchange="onChangeFontColor()"
                         value="#ffffff" hidden />
-
-                    <div class="instructions inst-inline-edit animated flash">
-                        <h3>Double click on text for inline edit</h3>
-                    </div>
-                    <a href="memes.html" target="_blank" class="instructions inst-saved-memes animated flash">
-                        Click to see your saved memes
-                    </a>
                 </div>
 
                 <div class="bottom-btns-container flex space-between">

@@ -5,10 +5,25 @@ var gMeme;
 var gSearchByImgs = []
 var gImgNextId = 101;
 
-function disDoubleTap() {
+function pinchOut() {
+    var hammertime = new Hammer(gCanvas);
+    hammertime.get('pinch').set({ enable: true });
+    hammertime.on('pinchout', function (ev) {
+        let currLine = getCurrLine();
+        currLine.size += 0.2
+        renderMeme(gMeme.selectedImgId)
+    })
+    hammertime.on('pinchin', function (ev) {
+        let currLine = getCurrLine();
+        currLine.size -= 0.2
+        renderMeme(gMeme.selectedImgId)
+    })
+}
+
+function doubleTapEdit() {
     var hammertime = new Hammer(gCanvas);
     hammertime.on('doubletap', function (ev) {
-        return;
+        onInlineEdit();
     });
 }
 

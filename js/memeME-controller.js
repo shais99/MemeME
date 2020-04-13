@@ -9,25 +9,32 @@ var gIsMovingText = false;
 var gIsUpload = false;
 var gUploadSrc;
 var gCurrInputValue;
+var gIsInlineEdit = false;
 
 function onSelectMeme(imgId) {
     initCanvas(imgId);
     setCurrMeme(imgId);
     setCurrTextInput();
-    if (window.outerWidth < 615) changeByRes();
+    if (window.outerWidth < 615) {
+        changeByRes();
+        doubleTapEdit();
+        pinchOut();
+    }
     dragAndDrop();
     touchEvent();
-    disDoubleTap();
 }
 
 function renderUpload() {
     renderPageCanvas();
     setCurrMeme();
     setCurrTextInput();
-    if (window.outerWidth < 615) changeByRes();
+    if (window.outerWidth < 615) {
+        changeByRes();
+        doubleTapEdit();
+        pinchOut();
+    } 
     dragAndDrop();
     touchEvent();
-    disDoubleTap();
 }
 
 function onInit() {
@@ -93,7 +100,7 @@ function onSaveMeme(ev) {
 
     let imgContent = gCanvas.toDataURL();
     console.log(imgContent);
-    
+
     if (!gSavedMemes || !gSavedMemes.length) gSavedMemes = []
 
     let meme = getMeme();
@@ -102,6 +109,8 @@ function onSaveMeme(ev) {
 }
 
 function onChangeSelected(ev) {
+
+    if (gIsInlineEdit) return;
 
     const offsetX = ev.offsetX;
     const offsetY = ev.offsetY;
@@ -287,21 +296,20 @@ function changeByRes() {
     })
 }
 
-
-
-
-
 function onInlineEdit() {
-    let meme = getMeme();
-    var currLine = getCurrLine();
-    
-    var inputWraper = document.querySelector('.inline-input');
-    var input = document.querySelector('.inline-input input');
+    const meme = getMeme();
+    const currLine = getCurrLine();
+    const inputWraper = document.querySelector('.inline-input');
+    const input = document.querySelector('.inline-input input');
+    gIsInlineEdit = true;
+
     inputWraper.style.left = `0px`;
     inputWraper.style.top = currLine.yPosition - currLine.height + `px`;
-    inputWraper.style.height = currLine.height + 10 + `px`;
+    inputWraper.style.height = currLine.height + 20 + `px`;
     input.style.fontSize = currLine.size + 'px';
     inputWraper.style.display = 'block';
+
+
     input.value = currLine.text;
     gCurrInputValue = input.value
     input.focus();
@@ -310,8 +318,8 @@ function onInlineEdit() {
 }
 
 function onInlineChangeText(el, ev) {
-    var currLine = getCurrLine();
-    let memeInput = document.querySelector('input[name="meme-text"]');
+    const currLine = getCurrLine();
+    const memeInput = document.querySelector('input[name="meme-text"]');
 
     currLine.text = el.value;
     memeInput.value = el.value;
@@ -320,9 +328,11 @@ function onInlineChangeText(el, ev) {
 }
 
 function onInlineChangeFinish() {
-    let meme = getMeme();
-    let currLine = getCurrLine();
-    var inputWraper = document.querySelector('.inline-input');
+    const meme = getMeme();
+    const currLine = getCurrLine();
+    const inputWraper = document.querySelector('.inline-input');
+    gIsInlineEdit = false;
+    
     inputWraper.style.display = 'none';
     currLine.text = gCurrInputValue
     renderMeme(meme.selectedImgId);
